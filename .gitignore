@@ -1,0 +1,5 @@
+# Empêche l'ajout de fichiers temporaires
+*.log
+*.tmp
+*.bak
+Thumbs.db
