@@ -1,85 +1,38 @@
 
 # AD-DELET-COMPUTER
 
-Script PowerShell pour supprimer un ordinateur de l'Active Directory.
+PowerShell script to delete a computer object from Active Directory.
 
 ## 📋 Description
-Ce script permet de supprimer un objet **ordinateur** dans l’Active Directory à partir de son nom.  
-Utile dans des scénarios de nettoyage ou de gestion automatisée.
+This script allows you to delete a **computer object** from Active Directory using its name.  
+It's useful for cleanup or automated IT asset management tasks.
 
-## 🧠 Prérequis
+## 🧠 Requirements
 
-- Droits suffisants dans l'Active Directory.
-- Module `ActiveDirectory` installé (inclus dans RSAT).
-- Exécution en tant qu’administrateur.
+- Sufficient permissions to manage AD computer objects.
+- `ActiveDirectory` PowerShell module (included in RSAT).
+- Must be run as Administrator.
 
-## 🚀 Utilisation
+## 🚀 Usage
 
 ```powershell
-.\delete-ad-computer.ps1 -ComputerName "NOM_DU_PC"
+.\delete-ad-computer.ps1 -ComputerName "YOUR_COMPUTER_NAME"
 ```
 
-## ⚠️ Attention
-- Vérifiez bien le nom de l’ordinateur avant suppression.
-- L'action est **irréversible**.
+## ⚠️ Warning
+- Make sure the computer name is correct before running the script.
+- The deletion is **irreversible**.
 
-## 🛠 Exemple de commande intégrée :
+## 🛠 Example command used:
 
 ```powershell
 Remove-ADComputer -Identity "PC-DEMO01" -Confirm:$false
 ```
 
-## 🔒 Sécurité
-Le script désactive la confirmation (`-Confirm:$false`) pour automatiser les suppressions. Vous pouvez l’enlever pour un usage interactif.
+## 🔒 Safety
+The script uses `-Confirm:$false` to allow silent operation (no prompt).  
+Remove that flag if you want confirmation before deletion.
 
 ---
 
-📁 Repo GitHub : [AD-DELET-COMPUTER](https://github.com/KuKaRaCHa-gg/AD-DELET-COMPUTER)
-```
-
----
-
-### 📜 `delete-ad-computer.ps1`
-```powershell
-param (
-    [Parameter(Mandatory = $true)]
-    [string]$ComputerName
-)
-
-# Importation du module AD
-Import-Module ActiveDirectory
-
-try {
-    $computer = Get-ADComputer -Identity $ComputerName -ErrorAction Stop
-    Remove-ADComputer -Identity $ComputerName -Confirm:$false
-    Write-Host "✅ L'ordinateur '$ComputerName' a été supprimé avec succès."
-} catch {
-    Write-Host "❌ Erreur : Impossible de supprimer l'ordinateur '$ComputerName' - $_"
-}
-```
-
----
-
-### 🛑 `.gitignore`
-```gitignore
-# Empêche l'ajout de fichiers temporaires
-*.log
-*.tmp
-*.bak
-Thumbs.db
-```
-
----
-
-### 🚀 Commandes Git à exécuter
-
-Tu peux maintenant initialiser et push ton repo :
-
-```bash
-git init
-git add .
-git commit -m "Ajout du script de suppression AD"
-git branch -M main
-git remote add origin https://github.com/KuKaRaCHa-gg/AD-DELET-COMPUTER.git
-git push -u origin main
-```
+📁 GitHub Repository: [AD-DELET-COMPUTER](https://github.com/KuKaRaCHa-gg/AD-DELET-COMPUTER)
